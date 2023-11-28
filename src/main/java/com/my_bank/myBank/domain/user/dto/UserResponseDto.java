@@ -16,7 +16,6 @@ public class UserResponseDto {
     private String name;
     private String password;
     private String phone;
-    private String position;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }
