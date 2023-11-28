@@ -64,9 +64,8 @@ public enum Exceptions {
     OUTCOME_REQUEST_EXISTS(409, "OUTCOME Request exists"),
     OUTCOME_MEMBER_EXISTS(409, "OUTCOME Member exists");
 
-    private int status;
-
-    private String message;
+    private final int status;
+    private final String message;
 
     Exceptions(int status, String message) {
         this.status = status;
