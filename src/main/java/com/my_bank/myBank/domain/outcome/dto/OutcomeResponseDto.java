@@ -12,6 +12,10 @@ import java.time.LocalDateTime;
 public class OutcomeResponseDto {
     private Long outcomeId;
     private Long userId;
+    private String name;
+    private Long price;
+    private String accountingCategoriesStatus;
+    private String outComeCategory;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

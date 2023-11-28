@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 public class OutcomePatchDto {
     private Long outcomeId;
     private Long userId;
-
+    private String name;
+    private Long price;
+    private String accountingCategoriesStatus;
+    private String outComeCategory;
     public void updateId(Long id){
         this.outcomeId = id;
     }

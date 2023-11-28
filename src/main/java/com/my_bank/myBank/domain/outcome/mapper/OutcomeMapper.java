@@ -22,6 +22,11 @@ public interface OutcomeMapper {
         return OutcomeResponseDto.builder()
                 .userId(user.getUserId())
                 .outcomeId(outcome.getOutcomeId())
+                .outComeCategory(String.valueOf(outcome.getOutComeCategory()))
+                .accountingCategoriesStatus(String.valueOf(outcome.getAccountingCategoriesStatus()))
+                .price(outcome.getPrice())
+                .name(outcome.getName())
+                .outcomeId(outcome.getOutcomeId())
                 .createdAt(outcome.getCreatedAt())
                 .modifiedAt(outcome.getModifiedAt())
                 .build();
