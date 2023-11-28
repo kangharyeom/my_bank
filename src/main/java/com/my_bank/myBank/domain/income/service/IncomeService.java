@@ -69,10 +69,8 @@ public class IncomeService {
 
     public Income findVerifiedIncome(long incomeId) {
         Optional<Income> optionalIncome = IncomeRepository.findById(incomeId);
-        Income findIncome =
-                optionalIncome.orElseThrow(() ->
+        return optionalIncome.orElseThrow(() ->
                         new BusinessLogicException(Exceptions.INCOME_NOT_FOUND));
-        return findIncome;
     }
 
     public Income findVerifiedIncomeByUserId(long userId) {
@@ -88,12 +86,8 @@ public class IncomeService {
     public Income findVerifiedExistsIncomeByUserId(long userId) {
         Income income = IncomeRepository.findByUserId(userId);
         if(income ==null) {
-            try {
-            } catch (NoSuchElementException ex) {
-                throw new BusinessLogicException(Exceptions.INCOME_EXISTS);
-            }
-        return income;
+            throw new BusinessLogicException(Exceptions.INCOME_EXISTS);
         }
-        throw new BusinessLogicException(Exceptions.INCOME_EXISTS);
+        return income;
     }
 }

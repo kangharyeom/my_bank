@@ -69,10 +69,8 @@ public class OutcomeService {
 
     public Outcome findVerifiedOutcome(long outcomeId) {
         Optional<Outcome> optionalOutcome = outcomeRepository.findById(outcomeId);
-        Outcome findOutcome =
-                optionalOutcome.orElseThrow(() ->
+        return optionalOutcome.orElseThrow(() ->
                         new BusinessLogicException(Exceptions.OUTCOME_NOT_FOUND));
-        return findOutcome;
     }
 
     public Outcome findVerifiedOutcomeByUserId(long userId) {
@@ -88,12 +86,8 @@ public class OutcomeService {
     public Outcome findVerifiedExistsOutcomeByUserId(long userId) {
         Outcome outcome = outcomeRepository.findByUserId(userId);
         if(outcome ==null) {
-            try {
-            } catch (NoSuchElementException ex) {
                 throw new BusinessLogicException(Exceptions.OUTCOME_EXISTS);
-            }
-        return outcome;
         }
-        throw new BusinessLogicException(Exceptions.OUTCOME_EXISTS);
+        return outcome;
     }
 }

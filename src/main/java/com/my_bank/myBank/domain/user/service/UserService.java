@@ -27,7 +27,6 @@ public class UserService {
         verifiedUser(user.getEmail());
 
 //        List<String> roles = authorityUtils.createRoles(user.getEmail());
-
 //        String encryptPassword = passwordEncoder.encode(user.getPassword());
 //        user.setPassword(encryptPassword);
 
@@ -106,18 +105,14 @@ public class UserService {
 
     public User findVerifiedUser(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
-        User findUser =
-                optionalUser.orElseThrow(() ->
+        return optionalUser.orElseThrow(() ->
                         new BusinessLogicException(Exceptions.USER_NOT_FOUND));
-        return findUser;
     }
 
     public User findVerifiedUserByTeamMemberRole(long userId) {
         Optional<User> optionalUser = userRepository.findById(userId);
-        User findUser =
-                optionalUser.orElseThrow(() ->
+        return optionalUser.orElseThrow(() ->
                         new BusinessLogicException(Exceptions.USER_NOT_FOUND));
-        return findUser;
     }
    /* // 로그인한 회원
     public User getLoginUser() {
