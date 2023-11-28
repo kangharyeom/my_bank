@@ -37,7 +37,31 @@ public enum Exceptions {
     ACCOUNT_EXISTS(409, "ACCOUNT exists"),
     ACCOUNT_CHECK_EXISTS(409, "ACCOUNT Check exists"),
     ACCOUNT_REQUEST_EXISTS(409, "ACCOUNT Request exists"),
-    ACCOUNT_MEMBER_EXISTS(409, "ACCOUNT Member exists");
+    ACCOUNT_MEMBER_EXISTS(409, "ACCOUNT Member exists"),
+
+    /*
+     * INCOME(게시글) 예외 처리
+     */
+    INCOME_NOT_PATCHED(403, "INCOME not patched"),
+    INCOME_NOT_RECRUITING(403, "INCOME status not recruiting"),
+    INVALID_INCOME_STATUS(403, "Invalid INCOME Status"),
+    INCOME_NOT_FOUND(404, "INCOME Not Found"),
+    INCOME_EXISTS(409, "INCOME exists"),
+    INCOME_CHECK_EXISTS(409, "INCOME Check exists"),
+    INCOME_REQUEST_EXISTS(409, "INCOME Request exists"),
+    INCOME_MEMBER_EXISTS(409, "INCOME Member exists"),
+
+    /*
+     * OUTCOME(게시글) 예외 처리
+     */
+    OUTCOME_NOT_PATCHED(403, "OUTCOME not patched"),
+    OUTCOME_NOT_RECRUITING(403, "OUTCOME status not recruiting"),
+    INVALID_OUTCOME_STATUS(403, "Invalid OUTCOME Status"),
+    OUTCOME_NOT_FOUND(404, "OUTCOME Not Found"),
+    OUTCOME_EXISTS(409, "OUTCOME exists"),
+    OUTCOME_CHECK_EXISTS(409, "OUTCOME Check exists"),
+    OUTCOME_REQUEST_EXISTS(409, "OUTCOME Request exists"),
+    OUTCOME_MEMBER_EXISTS(409, "OUTCOME Member exists");
 
     @Getter
     private int status;
