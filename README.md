@@ -7,7 +7,7 @@
 - java 17
 - spring 3.2.0
 - gradle 8.4
-- maria DB (버전 미정)
+- maria DB 12.3.0
 - postman API
 - thymeleaf
 
