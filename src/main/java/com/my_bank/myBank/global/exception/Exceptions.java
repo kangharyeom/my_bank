@@ -2,6 +2,7 @@ package com.my_bank.myBank.global.exception;
 
 import lombok.Getter;
 
+@Getter
 public enum Exceptions {
 
     /*
@@ -63,10 +64,8 @@ public enum Exceptions {
     OUTCOME_REQUEST_EXISTS(409, "OUTCOME Request exists"),
     OUTCOME_MEMBER_EXISTS(409, "OUTCOME Member exists");
 
-    @Getter
     private int status;
 
-    @Getter
     private String message;
 
     Exceptions(int status, String message) {
