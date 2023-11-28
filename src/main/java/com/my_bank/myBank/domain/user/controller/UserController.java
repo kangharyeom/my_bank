@@ -5,7 +5,6 @@ import com.my_bank.myBank.domain.user.dto.UserPostDto;
 import com.my_bank.myBank.domain.user.dto.UserResponseDto;
 import com.my_bank.myBank.domain.user.entity.User;
 import com.my_bank.myBank.domain.user.mapper.UserMapper;
-import com.my_bank.myBank.domain.user.repository.UserRepository;
 import com.my_bank.myBank.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
