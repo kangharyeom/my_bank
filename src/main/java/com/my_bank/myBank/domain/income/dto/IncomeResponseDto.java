@@ -10,8 +10,12 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class IncomeResponseDto {
-    private Long IncomeId;
+    private Long incomeId;
     private Long userId;
+    private String name;
+    private Long price;
+    private String accountingCategoriesStatus;
+    private String outComeCategory;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
 }

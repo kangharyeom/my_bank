@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 public class IncomePatchDto {
     private Long incomeId;
     private Long userId;
-
+    private String name;
+    private Long price;
+    private String accountingCategoriesStatus;
+    private String outComeCategory;
     public void updateId(Long id){
         this.incomeId = id;
     }

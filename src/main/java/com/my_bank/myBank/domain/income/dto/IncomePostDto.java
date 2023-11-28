@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class IncomePostDto {
-    private Long IncomeId;
+    private Long incomeId;
     private Long userId;
+    private String name;
+    private Long price;
+    private String accountingCategoriesStatus;
+    private String outComeCategory;
 }
