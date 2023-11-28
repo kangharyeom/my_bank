@@ -20,7 +20,7 @@ import javax.validation.constraints.Positive;
 @Validated
 @RequiredArgsConstructor
 @Log4j2
-@RequestMapping("/api/Accounts")
+@RequestMapping("/api/accounts")
 public class AccountController {
 
     private final AccountService accountService;
