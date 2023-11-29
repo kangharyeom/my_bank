@@ -35,10 +35,10 @@ public class Outcome extends Auditable {
     private OutComeCategory outComeCategory;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER_ID",nullable = false)
     private User user;
 
     @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "ACCOUNT_ID")
+    @JoinColumn(name = "ACCOUNT_ID",nullable = false)
     private Account account;
 }
