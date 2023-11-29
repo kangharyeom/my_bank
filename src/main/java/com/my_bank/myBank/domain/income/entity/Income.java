@@ -5,7 +5,6 @@ import com.my_bank.myBank.domain.user.entity.User;
 import com.my_bank.myBank.global.audit.Auditable;
 import com.my_bank.myBank.global.constant.AccountingCategoriesStatus;
 import com.my_bank.myBank.global.constant.InComeCategory;
-import com.my_bank.myBank.global.constant.OutComeCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
