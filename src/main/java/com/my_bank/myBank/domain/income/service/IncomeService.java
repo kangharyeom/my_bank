@@ -83,11 +83,10 @@ public class IncomeService {
         return income;
     }
 
-    public Income findVerifiedExistsIncomeByUserId(long userId) {
+    public void findVerifiedExistsIncomeByUserId(long userId) {
         Income income = IncomeRepository.findByUserId(userId);
-        if(income ==null) {
+        if(income !=null) {
             throw new BusinessLogicException(Exceptions.INCOME_EXISTS);
         }
-        return income;
     }
 }

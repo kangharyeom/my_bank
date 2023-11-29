@@ -83,11 +83,10 @@ public class OutcomeService {
         return outcome;
     }
 
-    public Outcome findVerifiedExistsOutcomeByUserId(long userId) {
+    public void findVerifiedExistsOutcomeByUserId(long userId) {
         Outcome outcome = outcomeRepository.findByUserId(userId);
-        if(outcome ==null) {
-                throw new BusinessLogicException(Exceptions.OUTCOME_EXISTS);
+        if(outcome !=null) {
+            throw new BusinessLogicException(Exceptions.OUTCOME_EXISTS);
         }
-        return outcome;
     }
 }
