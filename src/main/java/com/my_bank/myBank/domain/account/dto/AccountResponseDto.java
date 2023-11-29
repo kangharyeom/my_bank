@@ -15,4 +15,19 @@ public class AccountResponseDto {
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
     private String date;
+    private String name;
+    private String description;
+
+    @Override
+    public String toString() {
+        return "AccountResponseDto{" +
+                "accountId=" + accountId +
+                ", userId=" + userId +
+                ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
+                ", date='" + date + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

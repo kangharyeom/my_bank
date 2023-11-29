@@ -11,6 +11,8 @@ public class AccountPatchDto {
     private Long accountId;
     private Long userId;
     private String date;
+    private String name;
+    private String description;
 
     public void updateId(Long id){
         this.accountId = id;

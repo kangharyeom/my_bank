@@ -23,6 +23,8 @@ public interface AccountMapper {
                 .userId(user.getUserId())
                 .accountId(account.getAccountId())
                 .date(account.getDate())
+                .name(account.getName())
+                .description(account.getDescription())
                 .createdAt(account.getCreatedAt())
                 .modifiedAt(account.getModifiedAt())
                 .build();

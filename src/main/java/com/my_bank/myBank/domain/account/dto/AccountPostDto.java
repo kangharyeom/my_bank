@@ -13,4 +13,6 @@ public class AccountPostDto {
     private Long accountId;
     private Long userId;
     private String date;
+    private String name;
+    private String description;
 }
