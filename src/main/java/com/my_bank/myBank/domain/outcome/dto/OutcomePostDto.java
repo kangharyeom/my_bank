@@ -1,11 +1,9 @@
 package com.my_bank.myBank.domain.outcome.dto;
 
-import com.my_bank.myBank.global.constant.AccountingCategoriesStatus;
-import com.my_bank.myBank.global.constant.OutComeCategory;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,14 +13,14 @@ import javax.validation.constraints.NotNull;
 public class OutcomePostDto {
     private Long outcomeId;
     private Long userId;
-    @NotNull
+    @NonNull
     private String name;
-    @NotNull
+    @NonNull
     private Long price;
-    @NotNull
+    @NonNull
     private String date;
-    @NotNull
+    @NonNull
     private String accountingCategoriesStatus;
-    @NotNull
+    @NonNull
     private String outComeCategory;
 }

@@ -3,6 +3,7 @@ package com.my_bank.myBank.domain.income.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.validation.constraints.NotNull;
 
@@ -12,14 +13,14 @@ import javax.validation.constraints.NotNull;
 public class IncomePostDto {
     private Long incomeId;
     private Long userId;
-    @NotNull
+    @NonNull
     private String name;
-    @NotNull
+    @NonNull
     private Long price;
-    @NotNull
+    @NonNull
     private String date;
-    @NotNull
+    @NonNull
     private String accountingCategoriesStatus;
-    @NotNull
+    @NonNull
     private String inComeCategory;
 }
