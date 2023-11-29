@@ -29,7 +29,7 @@ public class OutcomeController {
     private final OutcomeService outcomeService;
     private final OutcomeMapper outcomeMapper;
     @PostMapping
-    public ResponseEntity postOutcome(@Valid @RequestBody OutcomePostDto requestBody ){
+    public ResponseEntity<OutcomeResponseDto> postOutcome(@Valid @RequestBody OutcomePostDto requestBody ){
         Outcome outcome = outcomeService.createOutcome(
                 outcomeMapper.outcomePostDtoToOutcome(requestBody),
                 requestBody.getUserId(),
@@ -42,7 +42,7 @@ public class OutcomeController {
     }
 
     @PatchMapping("/{outcomeId}")
-    public ResponseEntity patchOutcome(@Valid @RequestBody OutcomePatchDto requestBody,
+    public ResponseEntity<OutcomeResponseDto> patchOutcome(@Valid @RequestBody OutcomePatchDto requestBody,
                                        @PathVariable("outcomeId") @Positive Long outcomeId){
         requestBody.updateId(outcomeId);
         Outcome outcome = outcomeService.updateOutcome(
@@ -54,7 +54,7 @@ public class OutcomeController {
     }
 
     @GetMapping("/{outcomeId}")
-    public ResponseEntity getOutcome(@PathVariable("outcomeId") @Positive Long outcomeId){
+    public ResponseEntity<OutcomeResponseDto> getOutcome(@PathVariable("outcomeId") @Positive Long outcomeId){
         Outcome outcome = outcomeService.findOutcome(outcomeId);
         OutcomeResponseDto outcomeResponse = outcomeMapper.outcomeToOutcomeResponseDto(outcome);
         log.info("팀 리스 폰스 {}",outcomeResponse);
@@ -63,7 +63,7 @@ public class OutcomeController {
     }
 
     @GetMapping
-    public ResponseEntity getOutcomes(@Positive @RequestParam(value = "page", defaultValue = "1") int page,
+    public ResponseEntity<MultiResponseDto<OutcomeResponseDto>> getOutcomes(@Positive @RequestParam(value = "page", defaultValue = "1") int page,
                                       @Positive @RequestParam(value = "size", defaultValue = "40") int size){
 
         Page<Outcome> pageContents = outcomeService.findOutcomes(page - 1, size);
@@ -76,7 +76,7 @@ public class OutcomeController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity getOutcomeByUserId(@PathVariable("userId") @Positive Long userId){
+    public ResponseEntity<OutcomeResponseDto> getOutcomeByUserId(@PathVariable("userId") @Positive Long userId){
         Outcome outcome = outcomeService.findOutcomeByUserId(userId);
         OutcomeResponseDto outcomeResponse = outcomeMapper.outcomeToOutcomeResponseDto(outcome);
 
@@ -84,7 +84,7 @@ public class OutcomeController {
     }
 
     @DeleteMapping("/{outcomeId}")
-    public ResponseEntity deleteOutcome(@PathVariable("outcomeId") @Positive Long outcomeId) {
+    public ResponseEntity<HttpStatus> deleteOutcome(@PathVariable("outcomeId") @Positive Long outcomeId) {
         outcomeService.deleteOutcome(outcomeId);
 
         return ResponseEntity.ok(HttpStatus.NO_CONTENT);

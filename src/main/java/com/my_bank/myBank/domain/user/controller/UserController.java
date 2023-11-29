@@ -28,7 +28,7 @@ public class UserController {
     * 회원 가입
     */
     @PostMapping("/join")
-    public ResponseEntity postUser(@RequestBody @Validated UserPostDto requestBody) {
+    public ResponseEntity<UserResponseDto> postUser(@RequestBody @Validated UserPostDto requestBody) {
 
         User user = userService.createUser(userMapper.userPostDtoToUser(requestBody));
         UserResponseDto userResponseDto = userMapper.userToUserResponseDto(user);
@@ -38,7 +38,7 @@ public class UserController {
 
     // 회원 정보 수정
     @PatchMapping("/{userId}")
-    public ResponseEntity patchUser(@PathVariable("userId") @Positive Long userId,
+    public ResponseEntity<UserResponseDto> patchUser(@PathVariable("userId") @Positive Long userId,
                                       @RequestBody @Valid UserPatchDto requestBody) {
         requestBody.setUserId(userId);
 
@@ -52,7 +52,7 @@ public class UserController {
 
     // 회원 단건 조회
     @GetMapping("/{userId}")
-    public ResponseEntity getUser(@PathVariable("userId") @Positive Long userId) {
+    public ResponseEntity<UserResponseDto> getUser(@PathVariable("userId") @Positive Long userId) {
         User user = userService.findUser(userId);
         UserResponseDto userResponseDto = userMapper.userToUserResponseDto(user);
 
@@ -61,7 +61,7 @@ public class UserController {
 
     // 회원 전체 조회
     @GetMapping
-    public ResponseEntity getAllUser() {
+    public ResponseEntity<List<UserResponseDto>> getAllUser() {
         List<User> users = userService.findAllUser();
         List<UserResponseDto> userResponseDtos = userMapper.usersToUsersResponse(users);
 
@@ -70,7 +70,7 @@ public class UserController {
 
     // 회원 탈퇴
     @DeleteMapping("/{userId}")
-    public ResponseEntity deleteUser(@PathVariable("userId") @Positive Long userId) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userId") @Positive Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.ok(HttpStatus.NO_CONTENT);
     }

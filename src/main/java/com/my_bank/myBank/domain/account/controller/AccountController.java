@@ -29,33 +29,31 @@ public class AccountController {
     private final AccountService accountService;
     private final AccountMapper accountMapper;
     @PostMapping
-    public ResponseEntity postAccount(@Valid @RequestBody AccountPostDto requestBody ){
-        Account Account = accountService.createAccount(
+    public ResponseEntity<AccountResponseDto> postAccount(@Valid @RequestBody AccountPostDto requestBody ){
+        Account account = accountService.createAccount(
                 accountMapper.accountPostDtoToAccount(requestBody),
                 requestBody.getUserId()
         );
-        AccountResponseDto AccountResponseDto = accountMapper.accountToAccountResponseDto(Account);
-        log.info("AccountResponseDto.getAccountId() : {}", AccountResponseDto.getAccountId());
-        log.info("AccountResponseDto.getUserId() : {}", AccountResponseDto.getUserId());
-        log.info("requestBody.getUserId() : {}", requestBody.getUserId());
+        AccountResponseDto accountResponseDto = accountMapper.accountToAccountResponseDto(account);
+        log.info("AccountResponseDto : {}", accountResponseDto.toString());
 
-        return ResponseEntity.ok(AccountResponseDto);
+        return ResponseEntity.ok(accountResponseDto);
     }
 
     @PatchMapping("/{accountId}")
-    public ResponseEntity patchAccount(@Valid @RequestBody AccountPatchDto requestBody,
+    public  ResponseEntity<AccountResponseDto> patchAccount(@Valid @RequestBody AccountPatchDto requestBody,
                                        @PathVariable("accountId") @Positive Long accountId){
         requestBody.updateId(accountId);
         Account account = accountService.updateAccount(
                 accountMapper.accountPatchDtoToAccount(requestBody));
 
-        AccountResponseDto userResponseDto = accountMapper.accountToAccountResponseDto(account);
+        AccountResponseDto accountResponseDto = accountMapper.accountToAccountResponseDto(account);
 
-        return ResponseEntity.ok(userResponseDto);
+        return ResponseEntity.ok(accountResponseDto);
     }
 
     @GetMapping("/{accountId}")
-    public ResponseEntity getAccount(@PathVariable("accountId") @Positive Long accountId){
+    public ResponseEntity<AccountResponseDto> getAccount(@PathVariable("accountId") @Positive Long accountId){
         Account account = accountService.findAccount(accountId);
         AccountResponseDto accountResponse = accountMapper.accountToAccountResponseDto(account);
         log.info("팀 리스 폰스 {}",accountResponse);
@@ -64,8 +62,9 @@ public class AccountController {
     }
 
     @GetMapping
-    public ResponseEntity getContents(@Positive @RequestParam(value = "page", defaultValue = "1") int page,
-                                      @Positive @RequestParam(value = "size", defaultValue = "40") int size){
+    public ResponseEntity<MultiResponseDto<AccountResponseDto>> getContents(
+            @Positive @RequestParam(value = "page", defaultValue = "1") int page,
+            @Positive @RequestParam(value = "size", defaultValue = "40") int size){
 
         Page<Account> pageContents = accountService.findAccounts(page - 1, size);
         List<Account> accounts = pageContents.getContent();
@@ -77,7 +76,7 @@ public class AccountController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity getAccountByUserId(@PathVariable("userId") @Positive Long userId){
+    public ResponseEntity<AccountResponseDto> getAccountByUserId(@PathVariable("userId") @Positive Long userId){
         Account account = accountService.findAccountByUserId(userId);
         AccountResponseDto accountResponse = accountMapper.accountToAccountResponseDto(account);
 
@@ -85,7 +84,7 @@ public class AccountController {
     }
 
     @DeleteMapping("/{accountId}")
-    public ResponseEntity deleteAccount(@PathVariable("accountId") @Positive Long accountId) {
+    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable("accountId") @Positive Long accountId) {
         accountService.deleteAccount(accountId);
 
         return ResponseEntity.ok(HttpStatus.NO_CONTENT);

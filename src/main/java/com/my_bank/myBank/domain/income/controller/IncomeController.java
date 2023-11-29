@@ -29,7 +29,7 @@ public class IncomeController {
     private final IncomeService incomeService;
     private final IncomeMapper incomeMapper;
     @PostMapping
-    public ResponseEntity postIncome(@Valid @RequestBody IncomePostDto requestBody ){
+    public ResponseEntity<IncomeResponseDto> postIncome(@Valid @RequestBody IncomePostDto requestBody ){
         Income income = incomeService.createIncome(
                 incomeMapper.incomePostDtoToIncome(requestBody),
                 requestBody.getUserId(),
@@ -43,7 +43,7 @@ public class IncomeController {
     }
 
     @PatchMapping("/{incomeId}")
-    public ResponseEntity patchIncome(@Valid @RequestBody IncomePatchDto requestBody,
+    public ResponseEntity<IncomeResponseDto> patchIncome(@Valid @RequestBody IncomePatchDto requestBody,
                                        @PathVariable("IncomeId") @Positive Long incomeId){
         requestBody.updateId(incomeId);
         Income income = incomeService.updateIncome(
@@ -55,7 +55,7 @@ public class IncomeController {
     }
 
     @GetMapping("/{incomeId}")
-    public ResponseEntity getIncome(@PathVariable("incomeId") @Positive Long incomeId){
+    public ResponseEntity<IncomeResponseDto> getIncome(@PathVariable("incomeId") @Positive Long incomeId){
         Income income = incomeService.findIncome(incomeId);
         IncomeResponseDto incomeResponse = incomeMapper.incomeToIncomeResponseDto(income);
         log.info("팀 리스 폰스 {}",incomeResponse);
@@ -64,8 +64,9 @@ public class IncomeController {
     }
 
     @GetMapping
-    public ResponseEntity getIncomes(@Positive @RequestParam(value = "page", defaultValue = "1") int page,
-                                      @Positive @RequestParam(value = "size", defaultValue = "40") int size){
+    public ResponseEntity<MultiResponseDto<IncomeResponseDto>> getIncomes(
+            @Positive @RequestParam(value = "page", defaultValue = "1") int page,
+            @Positive @RequestParam(value = "size", defaultValue = "40") int size){
 
         Page<Income> pageContents = incomeService.findIncomes(page - 1, size);
         List<Income> incomes = pageContents.getContent();
@@ -77,7 +78,7 @@ public class IncomeController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity getIncomeByUserId(@PathVariable("userId") @Positive Long userId){
+    public ResponseEntity<IncomeResponseDto> getIncomeByUserId(@PathVariable("userId") @Positive Long userId){
         Income income = incomeService.findIncomeByUserId(userId);
         IncomeResponseDto incomeResponse = incomeMapper.incomeToIncomeResponseDto(income);
 
@@ -85,7 +86,7 @@ public class IncomeController {
     }
 
     @DeleteMapping("/{incomeId}")
-    public ResponseEntity deleteIncome(@PathVariable("incomeId") @Positive Long incomeId) {
+    public ResponseEntity<HttpStatus> deleteIncome(@PathVariable("incomeId") @Positive Long incomeId) {
         incomeService.deleteIncome(incomeId);
 
         return ResponseEntity.ok(HttpStatus.NO_CONTENT);
