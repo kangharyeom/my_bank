@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class AccountPatchDto {
     private Long accountId;
     private Long userId;
+    private String date;
 
     public void updateId(Long id){
         this.accountId = id;

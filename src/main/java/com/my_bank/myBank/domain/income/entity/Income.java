@@ -24,6 +24,8 @@ public class Income extends Auditable {
 
     private Long price;
 
+    private String date;
+
     @Enumerated
     private AccountingCategoriesStatus accountingCategoriesStatus;
 

@@ -22,6 +22,7 @@ public interface AccountMapper {
         return AccountResponseDto.builder()
                 .userId(user.getUserId())
                 .accountId(account.getAccountId())
+                .date(account.getDate())
                 .createdAt(account.getCreatedAt())
                 .modifiedAt(account.getModifiedAt())
                 .build();

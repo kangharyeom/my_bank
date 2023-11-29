@@ -14,4 +14,5 @@ public class AccountResponseDto {
     private Long userId;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+    private String date;
 }

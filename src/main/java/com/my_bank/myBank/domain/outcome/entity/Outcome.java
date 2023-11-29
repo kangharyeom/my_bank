@@ -29,6 +29,7 @@ public class Outcome extends Auditable {
 
     private Long price;
 
+    private String date;
     @Enumerated
     private AccountingCategoriesStatus accountingCategoriesStatus;
 

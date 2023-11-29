@@ -26,6 +26,7 @@ public interface OutcomeMapper {
                 .accountingCategoriesStatus(String.valueOf(outcome.getAccountingCategoriesStatus()))
                 .price(outcome.getPrice())
                 .name(outcome.getName())
+                .date(outcome.getDate())
                 .outcomeId(outcome.getOutcomeId())
                 .createdAt(outcome.getCreatedAt())
                 .modifiedAt(outcome.getModifiedAt())

@@ -14,6 +14,7 @@ public class IncomeResponseDto {
     private Long userId;
     private String name;
     private Long price;
+    private String date;
     private String accountingCategoriesStatus;
     private String outComeCategory;
     private LocalDateTime createdAt;

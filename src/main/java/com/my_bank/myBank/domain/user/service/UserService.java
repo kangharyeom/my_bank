@@ -32,7 +32,7 @@ public class UserService {
 
         try {
             userRepository.save(user);
-            log.info("유저 등록 완료 {}", user);
+            log.info("USER CREATE COMPLETE {}", user);
         } catch (DataAccessException e) {
             log.error(e.getMessage(), e);
             return user;

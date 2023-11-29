@@ -26,6 +26,7 @@ public interface IncomeMapper {
                 .accountingCategoriesStatus(String.valueOf(income.getAccountingCategoriesStatus()))
                 .price(income.getPrice())
                 .name(income.getName())
+                .date(income.getDate())
                 .createdAt(income.getCreatedAt())
                 .modifiedAt(income.getModifiedAt())
                 .build();

@@ -12,6 +12,7 @@ public class IncomePatchDto {
     private Long userId;
     private String name;
     private Long price;
+    private String date;
     private String accountingCategoriesStatus;
     private String outComeCategory;
     public void updateId(Long id){
