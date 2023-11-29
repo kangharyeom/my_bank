@@ -6,8 +6,10 @@ import com.my_bank.myBank.domain.outcome.dto.OutcomeResponseDto;
 import com.my_bank.myBank.domain.outcome.entity.Outcome;
 import com.my_bank.myBank.domain.outcome.mapper.OutcomeMapper;
 import com.my_bank.myBank.domain.outcome.service.OutcomeService;
+import com.my_bank.myBank.global.response.MultiResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 @RestController
 @Validated
@@ -57,6 +60,19 @@ public class OutcomeController {
         log.info("팀 리스 폰스 {}",outcomeResponse);
 
         return ResponseEntity.ok(outcomeResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity getOutcomes(@Positive @RequestParam(value = "page", defaultValue = "1") int page,
+                                      @Positive @RequestParam(value = "size", defaultValue = "40") int size){
+
+        Page<Outcome> pageContents = outcomeService.findOutcomes(page - 1, size);
+        List<Outcome> outcomes = pageContents.getContent();
+        log.info("전체 요청 :" + outcomes);
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(outcomeMapper.outcomesToOutcomeResponse(outcomes),
+                        pageContents),
+                HttpStatus.OK);
     }
 
     @GetMapping("/users/{userId}")
