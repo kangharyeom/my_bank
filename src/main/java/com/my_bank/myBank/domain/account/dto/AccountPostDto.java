@@ -12,6 +12,5 @@ import javax.validation.constraints.NotNull;
 public class AccountPostDto {
     private Long accountId;
     private Long userId;
-    @NotNull
     private String date;
 }
