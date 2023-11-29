@@ -32,9 +32,7 @@ public class OutcomeController {
                 requestBody.getUserId()
         );
         OutcomeResponseDto outcomeResponseDto = outcomeMapper.outcomeToOutcomeResponseDto(outcome);
-        log.info("OutcomeResponseDto.getOutcomeId() : {}", outcomeResponseDto.getOutcomeId());
-        log.info("OutcomeResponseDto.getUserId() : {}", outcomeResponseDto.getUserId());
-        log.info("requestBody.getUserId() : {}", requestBody.getUserId());
+        log.info("OutcomeResponseDto: {}", outcomeResponseDto.toString());
 
         return ResponseEntity.ok(outcomeResponseDto);
     }

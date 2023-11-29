@@ -32,9 +32,8 @@ public class IncomeController {
                 requestBody.getUserId()
         );
         IncomeResponseDto incomeResponseDto = incomeMapper.incomeToIncomeResponseDto(income);
-        log.info("IncomeResponseDto.getIncomeId() : {}", incomeResponseDto.getIncomeId());
-        log.info("IncomeResponseDto.getUserId() : {}", incomeResponseDto.getUserId());
-        log.info("requestBody.getUserId() : {}", requestBody.getUserId());
+        log.info("incomeResponseDto: {}", incomeResponseDto.toString());
+
 
         return ResponseEntity.ok(incomeResponseDto);
     }
