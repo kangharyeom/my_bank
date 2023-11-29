@@ -19,4 +19,19 @@ public class OutcomeResponseDto {
     private String outComeCategory;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+
+    @Override
+    public String toString() {
+        return "OutcomeResponseDto{" +
+                "outcomeId=" + outcomeId +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", date='" + date + '\'' +
+                ", accountingCategoriesStatus='" + accountingCategoriesStatus + '\'' +
+                ", outComeCategory='" + outComeCategory + '\'' +
+                ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
+                '}';
+    }
 }

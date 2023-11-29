@@ -19,4 +19,19 @@ public class IncomeResponseDto {
     private String inComeCategory;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+
+    @Override
+    public String toString() {
+        return "IncomeResponseDto{" +
+                "incomeId=" + incomeId +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", date='" + date + '\'' +
+                ", accountingCategoriesStatus='" + accountingCategoriesStatus + '\'' +
+                ", inComeCategory='" + inComeCategory + '\'' +
+                ", createdAt=" + createdAt +
+                ", modifiedAt=" + modifiedAt +
+                '}';
+    }
 }
