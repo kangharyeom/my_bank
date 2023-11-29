@@ -20,17 +20,17 @@ public class Income extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long incomeId;
-
+    @Column(nullable = false)
     private String name;
-
+    @Column(nullable = false)
     private Long price;
-
+    @Column(nullable = false)
     private String date;
-
-    @Enumerated
-    private AccountingCategoriesStatus accountingCategoriesStatus;
-
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+        private AccountingCategoriesStatus accountingCategoriesStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private InComeCategory inComeCategory;
 
     @ManyToOne(cascade = CascadeType.DETACH)

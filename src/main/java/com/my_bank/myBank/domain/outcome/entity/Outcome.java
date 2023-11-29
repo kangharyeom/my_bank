@@ -21,20 +21,22 @@ public class Outcome extends Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long outcomeId;
 
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private Long price;
+    @Column(nullable = false)
+    private String date;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AccountingCategoriesStatus accountingCategoriesStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OutComeCategory outComeCategory;
+
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "USER_ID")
     private User user;
-
-    private String name;
-
-    private Long price;
-
-    private String date;
-    @Enumerated
-    private AccountingCategoriesStatus accountingCategoriesStatus;
-
-    @Enumerated
-    private OutComeCategory outComeCategory;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "ACCOUNT_ID")

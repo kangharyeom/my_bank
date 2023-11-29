@@ -27,6 +27,7 @@ public class Account extends Auditable {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    @Column(nullable = false)
     private String date;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
