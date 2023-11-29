@@ -22,15 +22,16 @@ public class Account extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
-    @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "USER_ID")
-    private User user;
     @Column(nullable = false)
     private String date;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String description;
+
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "USER_ID")
+    private User user;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
     private List<Income> incomes = new ArrayList<>();
