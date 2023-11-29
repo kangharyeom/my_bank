@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class IncomeResponseDto {
     private Long incomeId;
     private Long userId;
+    private Long accountId;
     private String name;
     private Long price;
     private String date;
@@ -25,6 +26,7 @@ public class IncomeResponseDto {
         return "IncomeResponseDto{" +
                 "incomeId=" + incomeId +
                 ", userId=" + userId +
+                ", accountId=" + accountId +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", date='" + date + '\'' +

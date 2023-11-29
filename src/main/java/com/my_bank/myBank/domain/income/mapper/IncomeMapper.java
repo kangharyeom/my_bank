@@ -1,5 +1,6 @@
 package com.my_bank.myBank.domain.income.mapper;
 
+import com.my_bank.myBank.domain.account.entity.Account;
 import com.my_bank.myBank.domain.income.dto.IncomeListDto;
 import com.my_bank.myBank.domain.income.dto.IncomePatchDto;
 import com.my_bank.myBank.domain.income.dto.IncomePostDto;
@@ -18,10 +19,12 @@ public interface IncomeMapper {
 
     default IncomeResponseDto incomeToIncomeResponseDto(Income income){
         User user = income.getUser();
+        Account account = income.getAccount();
 
         return IncomeResponseDto.builder()
                 .userId(user.getUserId())
                 .incomeId(income.getIncomeId())
+                .accountId(account.getAccountId())
                 .inComeCategory(String.valueOf(income.getInComeCategory()))
                 .accountingCategoriesStatus(String.valueOf(income.getAccountingCategoriesStatus()))
                 .price(income.getPrice())

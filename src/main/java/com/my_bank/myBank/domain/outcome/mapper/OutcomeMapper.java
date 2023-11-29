@@ -1,5 +1,6 @@
 package com.my_bank.myBank.domain.outcome.mapper;
 
+import com.my_bank.myBank.domain.account.entity.Account;
 import com.my_bank.myBank.domain.outcome.dto.OutcomeListDto;
 import com.my_bank.myBank.domain.outcome.dto.OutcomePatchDto;
 import com.my_bank.myBank.domain.outcome.dto.OutcomePostDto;
@@ -18,16 +19,17 @@ public interface OutcomeMapper {
 
     default OutcomeResponseDto outcomeToOutcomeResponseDto(Outcome outcome){
         User user = outcome.getUser();
+        Account account = outcome.getAccount();
 
         return OutcomeResponseDto.builder()
                 .userId(user.getUserId())
                 .outcomeId(outcome.getOutcomeId())
+                .accountId(account.getAccountId())
                 .outComeCategory(String.valueOf(outcome.getOutComeCategory()))
                 .accountingCategoriesStatus(String.valueOf(outcome.getAccountingCategoriesStatus()))
                 .price(outcome.getPrice())
                 .name(outcome.getName())
                 .date(outcome.getDate())
-                .outcomeId(outcome.getOutcomeId())
                 .createdAt(outcome.getCreatedAt())
                 .modifiedAt(outcome.getModifiedAt())
                 .build();

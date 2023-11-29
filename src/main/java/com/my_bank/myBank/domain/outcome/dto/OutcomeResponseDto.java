@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class OutcomeResponseDto {
     private Long outcomeId;
     private Long userId;
+    private Long accountId;
     private String name;
     private Long price;
     private String date;
@@ -25,6 +26,7 @@ public class OutcomeResponseDto {
         return "OutcomeResponseDto{" +
                 "outcomeId=" + outcomeId +
                 ", userId=" + userId +
+                ", accountId=" + accountId +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", date='" + date + '\'' +

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class IncomePatchDto {
     private Long incomeId;
     private Long userId;
+    private Long accountId;
     private String name;
     private Long price;
     private String date;
