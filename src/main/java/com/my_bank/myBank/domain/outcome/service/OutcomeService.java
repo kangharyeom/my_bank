@@ -1,9 +1,10 @@
 package com.my_bank.myBank.domain.outcome.service;
 
+import com.my_bank.myBank.domain.account.entity.Account;
+import com.my_bank.myBank.domain.account.service.AccountService;
 import com.my_bank.myBank.domain.outcome.entity.Outcome;
 import com.my_bank.myBank.domain.outcome.repository.OutcomeRepository;
 import com.my_bank.myBank.domain.user.entity.User;
-import com.my_bank.myBank.domain.user.repository.UserRepository;
 import com.my_bank.myBank.domain.user.service.UserService;
 import com.my_bank.myBank.global.exception.BusinessLogicException;
 import com.my_bank.myBank.global.exception.Exceptions;
@@ -19,16 +20,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OutcomeService {
     private final OutcomeRepository outcomeRepository;
-    private final UserRepository userRepository;
     private final UserService userService;
+    private final AccountService accountService;
+
     public Outcome createOutcome(
-            Outcome outcome, Long userId) {
+            Outcome outcome, Long userId, Long accountId) {
         findVerifiedExistsOutcomeByUserId(userId);
         User user = userService.findUser(userId);
+        Account account = accountService.findAccount(accountId);
 
         outcome.setUser(user);
-
-        userRepository.save(user);
+        outcome.setAccount(account);
 
         return outcomeRepository.save(outcome);
     }

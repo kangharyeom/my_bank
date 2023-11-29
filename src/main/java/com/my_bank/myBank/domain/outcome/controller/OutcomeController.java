@@ -29,7 +29,8 @@ public class OutcomeController {
     public ResponseEntity postOutcome(@Valid @RequestBody OutcomePostDto requestBody ){
         Outcome outcome = outcomeService.createOutcome(
                 outcomeMapper.outcomePostDtoToOutcome(requestBody),
-                requestBody.getUserId()
+                requestBody.getUserId(),
+                requestBody.getAccountId()
         );
         OutcomeResponseDto outcomeResponseDto = outcomeMapper.outcomeToOutcomeResponseDto(outcome);
         log.info("OutcomeResponseDto: {}", outcomeResponseDto.toString());

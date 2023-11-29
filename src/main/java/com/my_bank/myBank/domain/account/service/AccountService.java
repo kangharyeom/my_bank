@@ -21,6 +21,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
     private final UserService userService;
+
     public Account createAccount(
             Account account, Long userId) {
         findVerifiedExistsAccountByUserId(userId);
@@ -42,6 +43,10 @@ public class AccountService {
 //                .ifPresent(findAccount::setUniformType);
 
         return accountRepository.save(findAccount);
+    }
+
+    public Account findAccount(Long accountId) {
+        return existAccount(accountId);
     }
 
     public Account findAccount(long accountId) {
@@ -95,5 +100,9 @@ public class AccountService {
         return account;
         }
         throw new BusinessLogicException(Exceptions.ACCOUNT_EXISTS);
+    }
+
+    public Account existAccount(Long accountId) {
+        return accountRepository.findById(accountId).orElseThrow(() -> new BusinessLogicException(Exceptions.ACCOUNT_NOT_FOUND));
     }
 }

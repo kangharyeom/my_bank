@@ -29,7 +29,8 @@ public class IncomeController {
     public ResponseEntity postIncome(@Valid @RequestBody IncomePostDto requestBody ){
         Income income = incomeService.createIncome(
                 incomeMapper.incomePostDtoToIncome(requestBody),
-                requestBody.getUserId()
+                requestBody.getUserId(),
+                requestBody.getAccountId()
         );
         IncomeResponseDto incomeResponseDto = incomeMapper.incomeToIncomeResponseDto(income);
         log.info("incomeResponseDto: {}", incomeResponseDto.toString());

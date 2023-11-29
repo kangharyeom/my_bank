@@ -1,9 +1,10 @@
 package com.my_bank.myBank.domain.income.service;
 
+import com.my_bank.myBank.domain.account.entity.Account;
+import com.my_bank.myBank.domain.account.service.AccountService;
 import com.my_bank.myBank.domain.income.entity.Income;
 import com.my_bank.myBank.domain.income.repository.IncomeRepository;
 import com.my_bank.myBank.domain.user.entity.User;
-import com.my_bank.myBank.domain.user.repository.UserRepository;
 import com.my_bank.myBank.domain.user.service.UserService;
 import com.my_bank.myBank.global.exception.BusinessLogicException;
 import com.my_bank.myBank.global.exception.Exceptions;
@@ -19,18 +20,19 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class IncomeService {
     private final IncomeRepository IncomeRepository;
-    private final UserRepository userRepository;
     private final UserService userService;
+    private final AccountService accountService;
+
     public Income createIncome(
-            Income Income, Long userId) {
+            Income income, Long userId, Long accountId) {
         findVerifiedExistsIncomeByUserId(userId);
         User user = userService.findUser(userId);
+        Account account = accountService.findAccount(accountId);
 
-        Income.setUser(user);
+        income.setUser(user);
+        income.setAccount(account);
 
-        userRepository.save(user);
-
-        return IncomeRepository.save(Income);
+        return IncomeRepository.save(income);
     }
 
     public Income updateIncome(
