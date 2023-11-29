@@ -9,6 +9,9 @@ import com.my_bank.myBank.global.exception.BusinessLogicException;
 import com.my_bank.myBank.global.exception.Exceptions;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -39,8 +42,12 @@ public class AccountService {
 
         Account findAccount = findVerifiedAccount(account.getAccountId()); //ID로 멤버 존재 확인하고 comment 정보 반환
 
-//        Optional.ofNullable(Account.getUniformType())
-//                .ifPresent(findAccount::setUniformType);
+        Optional.ofNullable(account.getDate())
+                .ifPresent(findAccount::setDate);
+        Optional.ofNullable(account.getName())
+                .ifPresent(findAccount::setName);
+        Optional.ofNullable(account.getDescription())
+                .ifPresent(findAccount::setDescription);
 
         return accountRepository.save(findAccount);
     }
@@ -57,10 +64,10 @@ public class AccountService {
         return findVerifiedAccountByUserId(userId);
     }
 
-//    public Page<Account> findAccounts(int page, int size) {
-//        return accountRepository.findAll(PageRequest.of(page, size,
-//                Sort.by("accountId").descending()));
-//    }
+    public Page<Account> findAccounts(int page, int size) {
+        return accountRepository.findAll(PageRequest.of(page, size,
+                Sort.by("accountId").descending()));
+    }
 
     public Account findAccount(int accountId) {
         return findVerifiedAccount(accountId);

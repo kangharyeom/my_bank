@@ -10,6 +10,9 @@ import com.my_bank.myBank.global.exception.BusinessLogicException;
 import com.my_bank.myBank.global.exception.Exceptions;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -40,8 +43,16 @@ public class OutcomeService {
 
         Outcome findOutcome = findVerifiedOutcome(outcome.getOutcomeId()); //ID로 멤버 존재 확인하고 comment 정보 반환
 
-//        Optional.ofNullable(Outcome.getUniformType())
-//                .ifPresent(findOutcome::setUniformType);
+        Optional.ofNullable(outcome.getDate())
+                .ifPresent(findOutcome::setDate);
+        Optional.ofNullable(outcome.getName())
+                .ifPresent(findOutcome::setName);
+        Optional.ofNullable(outcome.getPrice())
+                .ifPresent(findOutcome::setPrice);
+        Optional.ofNullable(outcome.getAccountingCategoriesStatus())
+                .ifPresent(findOutcome::setAccountingCategoriesStatus);
+        Optional.ofNullable(outcome.getOutComeCategory())
+                .ifPresent(findOutcome::setOutComeCategory);
 
         return outcomeRepository.save(findOutcome);
     }
@@ -54,10 +65,10 @@ public class OutcomeService {
         return findVerifiedOutcomeByUserId(userId);
     }
 
-//    public Page<Outcome> findOutcomes(int page, int size) {
-//        return outcomeRepository.findAll(PageRequest.of(page, size,
-//                Sort.by("outcomeId").descending()));
-//    }
+    public Page<Outcome> findOutcomes(int page, int size) {
+        return outcomeRepository.findAll(PageRequest.of(page, size,
+                Sort.by("outcomeId").descending()));
+    }
 
     public Outcome findOutcome(int outcomeId) {
         return findVerifiedOutcome(outcomeId);

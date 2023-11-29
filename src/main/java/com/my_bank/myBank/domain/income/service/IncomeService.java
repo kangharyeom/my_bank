@@ -10,6 +10,9 @@ import com.my_bank.myBank.global.exception.BusinessLogicException;
 import com.my_bank.myBank.global.exception.Exceptions;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -40,8 +43,16 @@ public class IncomeService {
 
         Income findIncome = findVerifiedIncome(income.getIncomeId()); //ID로 멤버 존재 확인하고 comment 정보 반환
 
-//        Optional.ofNullable(Income.getUniformType())
-//                .ifPresent(findIncome::setUniformType);
+        Optional.ofNullable(income.getName())
+                .ifPresent(findIncome::setName);
+        Optional.ofNullable(income.getPrice())
+                .ifPresent(findIncome::setPrice);
+        Optional.ofNullable(income.getDate())
+                .ifPresent(findIncome::setDate);
+        Optional.ofNullable(income.getAccountingCategoriesStatus())
+                .ifPresent(findIncome::setAccountingCategoriesStatus);
+        Optional.ofNullable(income.getInComeCategory())
+                .ifPresent(findIncome::setInComeCategory);
 
         return IncomeRepository.save(findIncome);
     }
@@ -54,10 +65,10 @@ public class IncomeService {
         return findVerifiedIncomeByUserId(userId);
     }
 
-//    public Page<Income> findIncomes(int page, int size) {
-//        return IncomeRepository.findAll(PageRequest.of(page, size,
-//                Sort.by("IncomeId").descending()));
-//    }
+    public Page<Income> findIncomes(int page, int size) {
+        return IncomeRepository.findAll(PageRequest.of(page, size,
+                Sort.by("incomeId").descending()));
+    }
 
     public Income findIncome(int incomeId) {
         return findVerifiedIncome(incomeId);
