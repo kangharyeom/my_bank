@@ -4,6 +4,7 @@ import com.my_bank.myBank.domain.account.entity.Account;
 import com.my_bank.myBank.domain.user.entity.User;
 import com.my_bank.myBank.global.audit.Auditable;
 import com.my_bank.myBank.global.constant.AccountingCategoriesStatus;
+import com.my_bank.myBank.global.constant.InComeCategory;
 import com.my_bank.myBank.global.constant.OutComeCategory;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -30,7 +31,7 @@ public class Income extends Auditable {
     private AccountingCategoriesStatus accountingCategoriesStatus;
 
     @Enumerated
-    private OutComeCategory outComeCategory;
+    private InComeCategory inComeCategory;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "USER_ID")

@@ -22,7 +22,7 @@ public interface IncomeMapper {
         return IncomeResponseDto.builder()
                 .userId(user.getUserId())
                 .incomeId(income.getIncomeId())
-                .outComeCategory(String.valueOf(income.getOutComeCategory()))
+                .inComeCategory(String.valueOf(income.getInComeCategory()))
                 .accountingCategoriesStatus(String.valueOf(income.getAccountingCategoriesStatus()))
                 .price(income.getPrice())
                 .name(income.getName())

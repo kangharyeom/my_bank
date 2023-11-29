@@ -14,7 +14,7 @@ public class IncomePatchDto {
     private Long price;
     private String date;
     private String accountingCategoriesStatus;
-    private String outComeCategory;
+    private String inComeCategory;
     public void updateId(Long id){
         this.incomeId = id;
     }

@@ -21,5 +21,5 @@ public class IncomePostDto {
     @NotNull
     private String accountingCategoriesStatus;
     @NotNull
-    private String outComeCategory;
+    private String inComeCategory;
 }
